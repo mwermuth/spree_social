@@ -6,13 +6,23 @@ Spree::UserRegistrationsController.class_eval do
 
   def build_resource(*args)
     super
-    if session[:omniauth]
-      @spree_user.apply_omniauth(session[:omniauth])
+    Rails.logger.info(args)
+    Rails.logger.info(@user)
+    Rails.logger.info(@spree_user)
+    if @user != nil
+      if session[:omniauth]
+        @user.apply_omniauth(session[:omniauth])
+      end
+      @user 
+    else
+      if session[:omniauth]
+        @spree_user.apply_omniauth(session[:omniauth])
+      end
+      @spree_user 
     end
-    @spree_user
   end
 
   def clear_omniauth
-    session[:omniauth] = nil unless @spree_user.new_record?
+    session[:omniauth] = nil unless @user.new_record?
   end
 end

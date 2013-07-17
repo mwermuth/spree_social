@@ -3,6 +3,7 @@ module SpreeSocial
     ["Facebook", "facebook"],
     ["Twitter", "twitter"],
     ["Github", "github"],
+    ["Instagram", "instagram"],
     ["Google", "google_oauth2"]
   ]
 
@@ -14,10 +15,6 @@ module SpreeSocial
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec
-    end
-
-    initializer "spree_social.environment", :before => "spree.environment" do |app|
-      Spree::SocialConfig = Spree::SocialConfiguration.new
     end
 
     def self.activate

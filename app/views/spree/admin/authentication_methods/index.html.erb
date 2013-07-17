@@ -26,8 +26,8 @@
         <td><%= method.environment.to_s.titleize %></td>
         <td><%= method.active ? Spree.t(:yes) : Spree.t(:no) %></td>
         <td>
-          <%= link_to_edit method %> &nbsp;
-          <%= link_to_delete method %>
+        	<%= link_to_edit method %> &nbsp;
+        	<%= link_to_delete method %>
         </td>
       </tr>
     <% end %>

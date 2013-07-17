@@ -22,6 +22,6 @@
 
 <%= auth_form.field_container :active do %>
   <%= auth_form.label :active, Spree.t(:active) %><br />
-  <%= auth_form.radio_button :active, :true %><%= Spree.t(:yes) %>
-  <%= auth_form.radio_button :active, :false %><%= Spree.t(:no) %>
+  <%= auth_form.radio_button :active, :true %><%= t(:yes) %>
+  <%= auth_form.radio_button :active, :false %><%= t(:no) %>
 <% end %>
