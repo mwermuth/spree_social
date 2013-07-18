@@ -16,7 +16,6 @@
         <% for user_authentication in @user.user_authentications %>
           <div class="authentication">
             <div class="provider columns two">
-              <%= image_tag "store/#{user_authentication.provider}_32.png", :size => "32x32", :class => "columns" %>
               <%= user_authentication.provider %>
             </div>
             <div class="uid columns two"><%= user_authentication.uid %></div>
