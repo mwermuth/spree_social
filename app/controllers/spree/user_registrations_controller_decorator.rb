@@ -6,9 +6,6 @@ Spree::UserRegistrationsController.class_eval do
 
   def build_resource(*args)
     super
-    Rails.logger.info(args)
-    Rails.logger.info(@user)
-    Rails.logger.info(@spree_user)
     if @user != nil
       if session[:omniauth]
         @user.apply_omniauth(session[:omniauth])

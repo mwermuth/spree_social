@@ -28,13 +28,14 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           else
             user = Spree::User.find_by_nickname(auth_hash['info']['nickname']) || Spree::User.new
             user.apply_omniauth(auth_hash)
+            user.mark_as_confirmed
             if user.save
               flash[:notice] = "Signed in successfully."
               sign_in_and_redirect :spree_user, user
             else
               session[:omniauth] = auth_hash.except('extra')
               flash[:notice] = t(:one_more_step, :kind => auth_hash['provider'].capitalize)
-              redirect_to new_user_registration_url
+              redirect_to complete_path
             end
           end
 
