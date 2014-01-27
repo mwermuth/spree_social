@@ -1,4 +1,4 @@
 
 <% Spree::AuthenticationMethod.available_for(@user).each do |method| %>
-  <%= link_to("Login with #{method.provider}", '/users/auth/#{method.provider}', :title => Spree.t(:sign_in_with)) if method.active %>
+  <a href="/users/auth/instagram">Sign in with Instagram</a>
 <% end %>
