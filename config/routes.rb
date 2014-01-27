@@ -12,3 +12,7 @@ Spree::Core::Engine.routes.append do
   end
 
 end
+
+
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  match '', to: redirect("/#{I18n.default_locale}")
