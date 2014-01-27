@@ -1,4 +1,4 @@
 
 <% Spree::AuthenticationMethod.available_for(@user).each do |method| %>
-  <%= link_to("#{method.provider}", spree.user_omniauth_authorize_url(provider: method.provider), :title => Spree.t(:sign_in_with)) if method.active %>
+  <%= link_to("/users/auth/#{method.provider}", spree.user_omniauth_authorize_url(provider: method.provider), :title => Spree.t(:sign_in_with)) if method.active %>
 <% end %>
