@@ -34,6 +34,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             else
               session[:omniauth] = auth_hash.except('extra')
               flash[:notice] = t(:one_more_step, :kind => auth_hash['provider'].capitalize)
+              user.mark_as_confirmed()
               redirect_to complete_path(:spree_user => user)
             end
           end
