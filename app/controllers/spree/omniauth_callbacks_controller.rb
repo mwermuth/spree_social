@@ -22,7 +22,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             sign_in_and_redirect :spree_user, authentication.user
           elsif spree_current_user && authentication.present?
             if authentication.user.email != spree_current_user.email
-              flash[:notice] = "Account already linked with " + authentication.user.nickname +"."
+              flash[:notice] = "Account already linked."
               redirect_back_or_default(account_url)
             else
               spree_current_user.apply_omniauth(auth_hash)
