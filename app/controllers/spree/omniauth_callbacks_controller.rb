@@ -17,9 +17,19 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           
           session[:access_token] = auth_hash['credentials']['token']
           
-          if authentication.present?
+          if authentication.present? && spree_current_user == nil
             flash[:notice] = "Signed in successfully"
             sign_in_and_redirect :spree_user, authentication.user
+          elsif spree_current_user && authentication.present?
+            if authentication.user.email != spree_current_user.email
+              flash[:notice] = "Account already linked."
+              redirect_back_or_default(account_url)
+            else
+              spree_current_user.apply_omniauth(auth_hash)
+              spree_current_user.save!
+              flash[:notice] = "Authentication successful."
+              redirect_back_or_default(account_url)
+            end
           elsif spree_current_user
             spree_current_user.apply_omniauth(auth_hash)
             spree_current_user.save!
